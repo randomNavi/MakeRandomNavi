@@ -70,6 +70,13 @@ dependencies {
     testImplementation('com.squareup.okhttp3:okhttp:4.10.0')
     testImplementation('com.squareup.okhttp3:mockwebserver:4.10.0')
 
+    //geocoder
+    // https://mvnrepository.com/artifact/com.google.code.geocoder-java/geocoder-java
+    implementation group: 'com.google.code.geocoder-java', name: 'geocoder-java', version: '0.15'
+
+
+
+
 }
 
 tasks.named('test') {
