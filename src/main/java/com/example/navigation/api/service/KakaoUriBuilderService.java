@@ -13,7 +13,8 @@ public class KakaoUriBuilderService {
 
     // 주소검색 api
     private static final String KAKAO_LOCAL_SEARCH_ADDRESS_URL = "https://dapi.kakao.com/v2/local/search/address.json";
-    
+    // 카테고리 api
+    private static final String KAKAO_LOCAL_CATEGORY_SEARCH_URL = "https://dapi.kakao.com/v2/local/search/category.json";
 
     public URI buildUriByAddressSearch(String address) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(KAKAO_LOCAL_SEARCH_ADDRESS_URL);
@@ -40,5 +41,26 @@ public class KakaoUriBuilderService {
         log.info("*** 로그 [KakoaUriBuilerSerivce buildUrilByRoutreSerach] origin: {}, destination: {}, uri: {}", origin, destination ,routeUri);
 
         return routeUri;
+    }
+
+
+    // 목표한 약국에 맞는 URI 구성 -> 카테고리 요청에 맞는 URI
+    // 고객이 입력한 주소 -> 위도,경도 기반으로 변환 시킨 것 -> 다시 카테고리 기반으로 인자값
+    public URI buildUriByCategorySearch(double latitude, double longitude, double radius, String category){
+
+        double meterRadius = radius * 1000;
+
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(KAKAO_LOCAL_CATEGORY_SEARCH_URL);
+        uriBuilder.queryParam("category_group_code", category);
+        uriBuilder.queryParam("x", longitude);
+        uriBuilder.queryParam("y", latitude);
+        uriBuilder.queryParam("radius", meterRadius); // 반경 순
+        uriBuilder.queryParam("sort", "popularity"); // 인기도 순 정렬
+
+        URI uri = uriBuilder.build().encode().toUri();
+
+        log.info("[KakaoAddressSearchService buildUriByCategorySearch] uri : {} ", uri);
+
+        return uri;
     }
 }
