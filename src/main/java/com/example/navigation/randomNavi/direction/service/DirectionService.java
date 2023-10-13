@@ -1,4 +1,4 @@
-package com.example.navigation.direction.service;
+package com.example.navigation.randomNavi.direction.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

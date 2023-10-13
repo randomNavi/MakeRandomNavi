@@ -1,7 +1,6 @@
-package com.example.navigation.apinavi.dto;
+package com.example.navigation.randomNavi.apinavi.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

@@ -1,6 +1,6 @@
-package com.example.navigation.direction.controller;
+package com.example.navigation.randomNavi.direction.controller;
 
-import com.example.navigation.direction.service.DirectionService;
+import com.example.navigation.randomNavi.direction.service.DirectionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

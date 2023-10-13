@@ -1,7 +1,7 @@
-package com.example.navigation.apinavi.controller;
+package com.example.navigation.randomNavi.apinavi.controller;
 
-import com.example.navigation.apinavi.dto.KakaoRouteAllResponseDto;
-import com.example.navigation.apinavi.service.KakaoRouteSearchService;
+import com.example.navigation.randomNavi.apinavi.dto.KakaoRouteAllResponseDto;
+import com.example.navigation.randomNavi.apinavi.service.KakaoRouteSearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequiredArgsConstructor

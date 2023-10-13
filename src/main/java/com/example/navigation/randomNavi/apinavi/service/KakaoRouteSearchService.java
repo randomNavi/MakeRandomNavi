@@ -1,9 +1,9 @@
-package com.example.navigation.apinavi.service;
+package com.example.navigation.randomNavi.apinavi.service;
 
-import com.example.navigation.api.dto.DocumentDto;
-import com.example.navigation.api.dto.KakaoApiResponseDto;
-import com.example.navigation.api.service.KakaoAddressSearchService;
-import com.example.navigation.apinavi.dto.KakaoRouteAllResponseDto;
+import com.example.navigation.randomNavi.api.dto.DocumentDto;
+import com.example.navigation.randomNavi.api.dto.KakaoApiResponseDto;
+import com.example.navigation.randomNavi.api.service.KakaoAddressSearchService;
+import com.example.navigation.randomNavi.apinavi.dto.KakaoRouteAllResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,7 +30,7 @@ public class KakaoRouteSearchService {
     private String kakaoRestApiKey;
 
 
-    public KakaoRouteAllResponseDto requestRouteSearch(String originAddress,Integer redius) {
+    public KakaoRouteAllResponseDto requestRouteSearch(String originAddress, Integer redius) {
 
 
        if (ObjectUtils.isEmpty(originAddress) || ObjectUtils.isEmpty(redius)) return null;

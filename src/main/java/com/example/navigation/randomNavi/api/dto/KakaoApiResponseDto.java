@@ -1,4 +1,4 @@
-package com.example.navigation.api.dto;
+package com.example.navigation.randomNavi.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

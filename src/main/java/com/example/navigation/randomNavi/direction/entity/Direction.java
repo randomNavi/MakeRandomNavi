@@ -1,4 +1,4 @@
-package com.example.navigation.direction.entity;
+package com.example.navigation.randomNavi.direction.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

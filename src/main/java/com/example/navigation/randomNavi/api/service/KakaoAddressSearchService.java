@@ -1,7 +1,6 @@
-package com.example.navigation.apinavi.service;
+package com.example.navigation.randomNavi.api.service;
 
-import com.example.navigation.api.dto.KakaoApiResponseDto;
-import com.example.navigation.api.service.KakaoUriBuilderService;
+import com.example.navigation.randomNavi.api.dto.KakaoApiResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,29 +8,29 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 
-@Slf4j
+@Slf4j(topic = "KakaoAddressSearchService")
 @Service
 @RequiredArgsConstructor
-public class KakaoCategorySearchService { // 특정 카테고리 -> 약국
-
-    private final KakaoUriBuilderService kakaoUriBuilderService;
+public class KakaoAddressSearchService {
 
     private final RestTemplate restTemplate;
-
-    private static final String PARK_CATEGORY = "AT4";
+    private final KakaoUriBuilderService kakaoUriBuilderService;
 
     @Value("${kakao.rest.api.key}")
     private String kakaoRestApiKey;
 
+    // 해당 메서드를 호출 -> 입력한 주소값 -> 요청할 수 있는 uri + headers에 key값
+    // 요청한 것에 대한 응답 값 -> kakaoApiResponseDto 객체로 반환
+    public KakaoApiResponseDto requestAddressSearch(String address){ // 주소 -> 위도, 경도로 변환
 
-    // KakaoAddressSearch -> 주소 -> 위도,경도 -> 값을 매핑
-    public KakaoApiResponseDto requestPharmacyCategorySearch(double y, double x, double radius){
+        if(ObjectUtils.isEmpty(address)) return null;
 
-        URI uri = kakaoUriBuilderService.buildUriByCategorySearch(y, x, radius, PARK_CATEGORY);
+        URI uri = kakaoUriBuilderService.buildUriByAddressSearch(address);
 
         HttpHeaders headers = new HttpHeaders();
         headers.set(HttpHeaders.AUTHORIZATION, "KakaoAK " + kakaoRestApiKey);
@@ -41,5 +40,4 @@ public class KakaoCategorySearchService { // 특정 카테고리 -> 약국
         return restTemplate.exchange(uri, HttpMethod.GET, httpEntity, KakaoApiResponseDto.class).getBody();
 
     }
-
 }
