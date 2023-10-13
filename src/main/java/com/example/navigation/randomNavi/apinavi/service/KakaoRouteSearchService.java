@@ -110,6 +110,7 @@ public class KakaoRouteSearchService {
                 new DocumentDto(waypoints.getName(), waypoints.getY(), waypoints.getX())
         )));
         uriData.put("priority","RECOMMEND");
+        uriData.put("summary",true);
 
         URI uri = URI.create("https://apis-navi.kakaomobility.com/v1/waypoints/directions");
 
