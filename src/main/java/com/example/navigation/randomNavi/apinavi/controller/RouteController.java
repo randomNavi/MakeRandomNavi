@@ -28,7 +28,7 @@ public class RouteController {
         return "index";
     }
 
-    @GetMapping("/randomWays")
+    @GetMapping("/all-random-route")
     public ResponseEntity<KakaoRouteAllResponseDto> getRandomWays(@RequestParam String originAddress, @RequestParam Integer redius) {
         KakaoRouteAllResponseDto response = kakaoRouteSearchService.requestRandomWays(originAddress,redius);
         if (response == null) {
@@ -37,7 +37,7 @@ public class RouteController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/randomWay")
+    @GetMapping("/random-route")
     public ResponseEntity<KakaoRouteAllResponseDto> getRandomWay(@RequestParam String originAddress,@RequestParam String destinationAddress, @RequestParam Integer redius) {
         KakaoRouteAllResponseDto response = kakaoRouteSearchService.requestRamdomWay(originAddress,destinationAddress,redius);
         if (response == null) {

@@ -75,7 +75,7 @@ public class KakaoRouteSearchService {
 
         // 출발지와 도착지 주소를 각각 좌표로 변환
         DocumentDto origin = kakaoAddressSearchService.requestAddressSearch(originAddress).getDocumentDtoList().get(0);
-        DocumentDto destination = kakaoAddressSearchService.requestAddressSearch(originAddress).getDocumentDtoList().get(0);
+        DocumentDto destination = kakaoAddressSearchService.requestAddressSearch(destinationAddress).getDocumentDtoList().get(0);
 
         /***
          * 목적지와 경유지 값을 반경으로 계산해서 가져오는 메소드
@@ -110,7 +110,6 @@ public class KakaoRouteSearchService {
                 new DocumentDto(waypoints.getName(), waypoints.getY(), waypoints.getX())
         )));
         uriData.put("priority","RECOMMEND");
-        uriData.put("summary",true);
 
         URI uri = URI.create("https://apis-navi.kakaomobility.com/v1/waypoints/directions");
 
