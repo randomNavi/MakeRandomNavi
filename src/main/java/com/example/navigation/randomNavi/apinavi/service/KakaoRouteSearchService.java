@@ -30,7 +30,7 @@ public class KakaoRouteSearchService {
     private String kakaoRestApiKey;
 
 
-    public KakaoRouteAllResponseDto requestRouteSearch(String originAddress, Integer redius) {
+    public KakaoRouteAllResponseDto requestRandomWays(String originAddress, Integer redius) {
 
 
        if (ObjectUtils.isEmpty(originAddress) || ObjectUtils.isEmpty(redius)) return null;
@@ -64,6 +64,44 @@ public class KakaoRouteSearchService {
          * 요청 헤더 만드는 공식
          ***/
 
+        return makeRequestForm(origin,destination,waypoints);
+
+    }
+
+    public KakaoRouteAllResponseDto requestRamdomWay(String originAddress, String destinationAddress,Integer redius) {
+
+
+        if (ObjectUtils.isEmpty(originAddress) || ObjectUtils.isEmpty(redius) || ObjectUtils.isEmpty(destinationAddress)) return null;
+
+        // 출발지와 도착지 주소를 각각 좌표로 변환
+        DocumentDto origin = kakaoAddressSearchService.requestAddressSearch(originAddress).getDocumentDtoList().get(0);
+        DocumentDto destination = kakaoAddressSearchService.requestAddressSearch(originAddress).getDocumentDtoList().get(0);
+
+        /***
+         * 목적지와 경유지 값을 반경으로 계산해서 가져오는 메소드
+         ***/
+        KakaoApiResponseDto responses = kakaoCategorySearchService.requestPharmacyCategorySearch(origin.getY(), origin.getX(), redius);
+
+        /***
+         랜덤으로 경유지 만들기 알고리즘
+         ***/
+        int RandomLength = responses.getDocumentDtoList().size();
+
+        Random rd = new Random();
+
+        int waypointsCnt = rd.nextInt(RandomLength);
+
+        DocumentDto waypoints = responses.getDocumentDtoList().get(waypointsCnt);
+
+        /***
+         * 요청 헤더 만드는 공식
+         ***/
+
+        return makeRequestForm(origin,destination,waypoints);
+
+    }
+
+    private KakaoRouteAllResponseDto makeRequestForm(DocumentDto origin, DocumentDto destination, DocumentDto waypoints){
         Map<String,Object> uriData = new TreeMap<>();
         uriData.put("origin",new DocumentDto(origin.getName(),origin.getY(), origin.getX()));
         uriData.put("destination",new DocumentDto(destination.getName(),destination.getY(),destination.getX()));
