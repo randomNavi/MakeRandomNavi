@@ -1,60 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kakao Route Search</title>
-    <link rel="stylesheet" href="/css.css">
+    <title>Title</title>
+
 </head>
 <body>
+<script type="text/javascript">
+</script>
+</head>
 
-<h1>Kakao Route Search</h1>
+<h3 th:text="${nickname}">NickName</h3>
 
-<div id="map" style="width:1300px;height:900px;"></div> <!-- 지도가 표시될 영역 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c87b1c2e1d4bcdc3401e35160e8e7d95"></script> <!-- 카카오 지도 API -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c87b1c2e1d4bcdc3401e35160e8e7d95&libraries=services,clusterer,drawing"></script>
-
-<h3>기본 길찾기</h3>
-<form id="search-form">
-    <label for="originAddress">출발지:</label><br>
-    <input type="text" id="originAddress" name="originAddress"><button type='button' id='search-origin'>주소 검색</button><br>
-    <button type='button' id='current-location'>현재 위치를 추가하기</button><br>
-
-    <label for="destinationAddress">도착지:</label><br>
-    <input type="text" id="destinationAddress" name="destinationAddress"><button type='button' id='search-destination'>주소 검색</button><br>
-
-    <button type='submit'>길 찾기</button>
-</form>
-
-<h3>반경 기반 랜덤 길찾기</h3>
-<form id="all-random-search-form">
-    <label for="all-random-originAddress">출발지:</label><br>
-    <input type="text" id="all-random-originAddress" name="all-random-originAddress"><button type='button' id='all-random-search-origin'>주소 검색</button><br>
-    <button type='button' id='all-random-current-location'>현재 위치를 추가하기</button><br>
-
-    <label for="all-random-redius">반경:</label><br>
-    <input type="text" id="all-random-redius" name="all-random-redius"><br>
-
-    <button type='submit'>길 찾기</button>
-</form>
-<br>
-<h3>목적지, 반경 기반 랜덤 길찾기</h3>
-<form id="random-search-form">
-    <label for="random-originAddress">출발지:</label><br>
-    <input type="text" id="random-originAddress" name="random-originAddress"><button type='button' id='random-search-origin'>주소 검색</button><br>
-    <button type='button' id='random-current-location'>현재 위치를 추가하기</button><br>
-
-    <label for="random-destinationAddress">목적지:</label><br>
-    <input type="text" id="random-destinationAddress" name="random-destinationAddress"><button type='button' id='random-search-destination'>주소 검색</button><br>
-
-    <label for="random-redius">반경:</label><br>
-    <input type="text" id="random-redius" name="random-redius"><br>
-
-    <button type='submit'>길 찾기</button>
-</form>
+<a href="http://localhost:8080/api/auth/logout">로그아웃</a>
+<a href="http://localhost:8080/api/auth/regenerate">재발급</a>
 
 
-<script src="/navigation.js"></script> <!-- 여기에 실제 자바스크립트 파일 경로를 입력하세요 -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 카카오 우편번호 서비스 -->
+<h2>로그인 페이지</h2>
+
+<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=0c3c82e2bab1baa630c741b2c9f72e3c&redirect_uri=http://localhost:8080/api/auth/login" class="kakao-login">카카오 로그인</a>
+
+<h1> hello </h1>
+<div>
+
+    <h1 class="display-5 fw-bolder text-white mb-2">Navigation</h1>
+    <p class="lead fw-normal text-white-50 mb-4">기본 길찾기 기능 <br></p>
+    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+        <a class="btn btn-outline-light btn-lg px-4" href="/navigation">navigation</a>
+    </div>
+</div>
+
 
 </body>
 </html>
